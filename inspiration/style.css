@@ -1,0 +1,55 @@
+body{
+	font-family: Arial;
+	font-weight:bold;
+	margin:0px;
+	background-color: white;
+	overflow: hidden;
+	height: 100%;
+	/*cursor: none;*/
+}
+
+
+#txt {
+	position: absolute;
+	left: 600px;
+	top: 0px;
+	text-align:center;
+	width: 50%;
+	height: 100%;
+	margin: 0 auto;
+	font-size:546px;
+	color:white;
+
+}
+#LAB {
+	position: absolute;
+	left: 60px;
+	top: 0px;
+	text-align:center;
+	width: 100%;
+	height: 100%;
+	margin: 0 auto;
+	overflow: hidden;
+	font-size:146px;
+	color:black;
+	transform: rotate(0deg);
+}
+#footer {
+	position: absolute;
+	bottom:0px;
+	left:0px;
+	font-weight:normal;
+	text-transform: uppercase;
+	font-size: 140%;
+	color: gray;
+}
+#qr{
+	position: absolute;
+	top: 20px;
+	right: 0px;
+	height: 150px;
+	width:150px;
+	background:white;
+	border: 4px solid black;
+	border-right:none;
+}

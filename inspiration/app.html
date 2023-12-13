@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html >
+	<head> 
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<script src="https://www.gstatic.com/firebasejs/5.4.0/firebase.js"></script>
+		<style>
+			.slidecontainer {
+			  width: 100%;
+			  color: white;
+			}
+
+			.slider {
+			  -webkit-appearance: none;
+			  width: 100%;
+			  height: 25px;
+			  outline: none;
+
+			}
+			.slider::-webkit-slider-thumb {
+			  -webkit-appearance: none;
+			  appearance: none;
+			  width: 25px;
+			  height: 25px;
+			  background: #007467;
+			  cursor: pointer;
+			}
+
+			.slider::-moz-range-thumb {
+			  width: 25px;
+			  height: 25px;
+			  background: #007467;
+			  cursor: pointer;
+			}
+
+			body{
+				font-family:Arial;
+				font-size: 8px;
+				letter-spacing:1px;
+				color: white;
+			}
+
+			#but{
+				text-align:center;
+				color:white;
+				cursor:pointer;
+				font-size: 30px;
+				letter-spacing:1px;
+				width: 100px;
+				height: 100px;
+				  border-radius: 50%;
+				  display: flex; /* or inline-flex */
+				  align-items: center; 
+				  justify-content: center;
+				  margin:auto;
+			}
+			#logo{
+				width:100%;
+				
+			}
+			.col_F1666A {background:#F1666A}
+			.col_000B8C {background:#000B8C}
+			.col_F7C5C7 {background:#F7C5C7}
+			.col_A62C21 {background:#A62C21}
+			.col_F2B90C {background:#F2B90C}
+			.col_007467 {background:#007467}
+			.c_F1666A {background:#F1666A}
+			.c_000B8C {background:#000B8C}
+			.c_F7C5C7 {background:#F7C5C7}
+			.c_A62C21 {background:#A62C21}
+			.c_F2B90C {background:#F2B90C}
+			.c_007467 {background:#007467}
+			.CON{
+				padding: 30px;
+				padding-top: 5px;
+				padding-bottom: 5px;
+			}
+		</style>
+	</head>
+	
+	<body class="col_000B8C">
+		<div class="slidecontainer">
+			<img id="logo" src="https://welgeen.nl/an/logo.svg" />
+			<br>
+			<br>
+			<div id="BGCON" class="CON">
+				<h2>How might</h2>
+				
+				<input data="#pesoonsvorm" type="range" min="0" max="255" value="10" class="slider col_F7C5C7" id="input_bgR" oninput="setBG(this);">
+				
+	
+			</div>
+			<br>
+			<br>
+			
+			
+			<div id="SHCON" class="CON">
+				<h2>SHAPE COLOR</h2>
+				<p>RED(<span id="shR">139</span>)</p>
+				<input data="#shR" type="range" min="0" max="255" value="139" class="slider col_F2B90C" id="input_shR" oninput="setSH(this);">
+				
+				<p>GREEN(<span id="shG">75</span>)</p>
+				<input data="#shG" type="range" min="0" max="255" value="75" class="slider col_F2B90C" id="input_shG" oninput="setSH(this);">
+				
+				<p>BLUE(<span id="shB">50</span>)</p>
+				<input data="#shB" type="range" min="0" max="255" value="50" class="slider col_F2B90C" id="input_shB" oninput="setSH(this);">
+				
+			</div>
+			
+			<br>
+
+			
+			<p>setPathPointCount(<span id="points">50</span>)</p>
+			<input data="#points" type="range" min="0" max="255" value="50" class="slider c_A62C21" id="input_point" oninput="setPoint(this);">
+			<br>
+			<br>
+			
+			<div id="but" class="col_F1666A" onclick="runbabyrun();">RUN</div>
+			
+		</div>
+		
+		<script>
+		
+		 // Initialize Firebase
+			var config = {
+				apiKey: "AIzaSyBVzTcyAuEIi3XqHJfJ_Fu543lnqytDK9M",
+				authDomain: "welgeen003.firebaseapp.com",
+				databaseURL: "https://welgeen003.firebaseio.com",
+				projectId: "welgeen003",
+				storageBucket: "welgeen003.appspot.com",
+				messagingSenderId: "1056729225262"
+			};
+			
+			firebase.initializeApp(config);
+			
+			function getDATA(){
+				var a= document.querySelector("#input_bgR").value;
+				var b= document.querySelector("#input_bgG").value;
+				var c= document.querySelector("#input_bgB").value;
+				
+				var BGCOL = "rgb("+a+","+b+","+c+")";
+				document.querySelector("#BGCON").style.backgroundColor=BGCOL;
+			
+				a= document.querySelector("#input_shR").value;
+				b= document.querySelector("#input_shG").value;
+				c= document.querySelector("#input_shB").value;
+				
+				var SHCOL = "rgb("+a+","+b+","+c+")";
+				document.querySelector("#SHCON").style.backgroundColor=SHCOL;
+				
+				return {
+						"setBackgroundColor": BGCOL,
+						"setShapeColor": SHCOL,
+						"setPathPointCount": document.querySelector("#input_point").value,
+					}
+			}
+			
+			function runbabyrun(){
+
+				firebase.database().ref('/tq-p1/').set({
+					node:getDATA()});
+			}
+			
+			function setPoint(o){var id = o.getAttribute("data"); document.querySelector(id).innerHTML=o.value;getDATA();}
+			function setSH(o){var id = o.getAttribute("data"); document.querySelector(id).innerHTML=o.value;getDATA();}
+			function setBG(o){var id = o.getAttribute("data"); document.querySelector(id).innerHTML=o.value;getDATA();}
+			getDATA();
+		</script>
+	</body> 
+</html>

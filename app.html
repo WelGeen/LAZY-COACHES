@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html >
+	<head> 
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<!--script src="https://www.gstatic.com/firebasejs/5.4.0/firebase.js"></script-->
+		<link rel="stylesheet" href="style.css">
+	</head>
+	
+	<body class="col_000B8C">
+
+		<img id="logo" src="https://welgeen.nl/an/logo.svg" />
+		<br>
+		<div class="container">
+			<div class="los" >Dear lazy coach,</div>
+			<select  class="classic" id="select-1" >
+				<option value="I">How might I</option>
+				<option value="we">How might we</option>
+				<option value="a friend">How might a friend</option>
+				<option value="an ICT student">How might an ICT student</option>
+			</select>
+			<br>
+			<select  class="classic" id="select-2" >
+				<option value="develop">develop</option>
+				<option value="design">modify</option>
+				<option value="interact">interact</option>
+				<option value="validate">validate</option>
+				<option value="achieve">achieve</option>
+				<option value="motivate">motivate</option>
+			</select>
+			<br>
+			<select class="classic" id="select-3" >
+				<option value="system">a system</option>
+				<option value="application">an application</option>
+				<option value="application">a component</option>
+				<option value="solution">a solution</option>
+				<option value="user">a user</option>
+				<option value="company">a company</option>
+			</select>
+			<br>
+			<div class="los">to</div>
+			<select class="classic" id="select-4" >
+				<option value="enable">enable</option>
+				<option value="manage">manage</option>
+				<option value="allow">allow</option>
+				<option value="achieve">achieve</option>
+				<option value="support">support</option>
+				<option value="change">change</option>
+			<br>
+			<textarea rows="3" class="classic los" id="select-5" placeholder="write down something that a specific user is struggling with..." ></textarea> ?
+
+			<br>
+			<div id="but" class="col_F1666A" onclick="runbabyrun();">ASK</div>
+			
+		</div>
+		
+		<script>
+		 // Initialize Firebase
+			var config = {
+				apiKey: "AIzaSyBVzTcyAuEIi3XqHJfJ_Fu543lnqytDK9M",
+				authDomain: "welgeen003.firebaseapp.com",
+				databaseURL: "https://welgeen003.firebaseio.com",
+				projectId: "welgeen003",
+				storageBucket: "welgeen003.appspot.com",
+				messagingSenderId: "1056729225262"
+			};
+			
+			//firebase.initializeApp(config);
+			
+			function getDATA(){
+				let HMW = "";
+				for(var x=1 ; x<=5; x++){
+					HMW = HMW + document.querySelector("#select-"+x).value;
+				}
+				return {"HMW": HMW }
+			}
+			
+		
+			function runbabyrun(){
+				firebase.database().ref('/tq-lazy-coach/').set({
+					node:getDATA()});
+			}
+
+		</script>
+		
+	</body> 
+</html>
